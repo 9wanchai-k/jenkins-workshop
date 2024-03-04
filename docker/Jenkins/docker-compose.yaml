@@ -1,0 +1,27 @@
+# docker-compose.yaml
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    privileged: true
+    user: root
+    networks:
+      - test-automation-ecosystem
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ./jenkins-data:/var/jenkins_home
+      - ./plugins:/var/lib/jenkins/plugins
+
+volumes:
+  jenkins-data:
+  plugins:
+
+networks:
+  test-automation-ecosystem:
+    driver: bridge
+
+
+##run command line in docker container git config --global http.sslverify false
